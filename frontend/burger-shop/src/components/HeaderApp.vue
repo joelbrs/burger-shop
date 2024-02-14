@@ -13,28 +13,28 @@ const isProduct = $route.name === 'home-products' || $route.name === 'cart'
 
 const setActive = (isCurrent: boolean) => {
   if (isCurrent) {
-    return 'text-primary'
+    return 'text-violet-700'
   }
-  return 'hover:cursor-pointer hover:text-primary'
+  return 'hover:cursor-pointer hover:hover:text-violet-700'
 }
 </script>
 
 <template>
-  <header>
+  <header class="bg-secondary-foreground">
     <nav class="p-5">
       <div class="flex justify-between px-16 items-center">
         <div>
           <ul class="flex gap-5">
-            <li :class="`text-md font-serif ${setActive(isHome)}`">
+            <li :class="`text-md text-black font-serif ${setActive(isHome)}`">
               <RouterLink :to="{ name: 'home' }">Home</RouterLink>
             </li>
-            <li :class="`text-md font-serif ${setActive(isProduct)}`">
+            <li :class="`text-md text-black font-serif ${setActive(isProduct)}`">
               <RouterLink :to="{ name: 'home' }">Products</RouterLink>
             </li>
           </ul>
         </div>
         <div class="flex gap-5 h-7 items-center">
-          <div>
+          <div class="text-black">
             <RouterLink :to="{ name: 'home' }">
               <ShoppingCart :class="setActive(isCart)" />
             </RouterLink>

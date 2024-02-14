@@ -16,8 +16,6 @@ import { useRouter } from 'vue-router'
 const $router = useRouter()
 const $userStore = useUserStore()
 
-const active = ref(false)
-
 const user = ref<UserDTOOut>({
   email: '',
   id: '',
@@ -40,21 +38,18 @@ onMounted(() => {
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <CircleUser
-        :class="`hover:text-primary hover:cursor-pointer ${active ? 'text-primary' : ''}`"
-        @focus="active = !active"
-      />
+      <CircleUser :class="`hover:text-violet-700 hover:cursor-pointer text-black `" />
     </DropdownMenuTrigger>
     <DropdownMenuContent class="relative left-14 w-25">
       <DropdownMenuGroup>
         <DropdownMenuItem class="hover:cursor-pointer">
-          <div class="flex items-center w-full hover:text-primary">
+          <div class="flex items-center w-full hover:text-violet-500">
             <User class="mr-2 h-4 w-4" />
             <span>{{ user.name || 'Name' }}</span>
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem class="hover:cursor-pointer">
-          <div class="flex items-center w-full hover:text-primary">
+          <div class="flex items-center w-full hover:text-violet-500">
             <Mail class="mr-2 h-4 w-4" />
             <span>{{ user.email || 'E-mail' }}</span>
           </div>
