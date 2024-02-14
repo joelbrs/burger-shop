@@ -32,13 +32,13 @@ const tabs: Tab[] = [
   {
     id: 'login',
     label: 'Sign In',
-    title: 'Sign In',
+    title: 'Login',
     description: 'Enter your credentials to access the system.'
   },
   {
     id: 'register',
     label: 'Sign Up',
-    title: 'Sign In',
+    title: 'Register',
     description: 'Enter your credentials to register with the system'
   }
 ]
