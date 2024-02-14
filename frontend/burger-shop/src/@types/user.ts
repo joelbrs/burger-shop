@@ -1,3 +1,10 @@
+export interface UserDTOOut {
+  id: string
+  name: string
+  email: string
+  type: string
+}
+
 export interface UserSignInDTO {
   email: string
   password: string

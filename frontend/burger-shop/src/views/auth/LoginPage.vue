@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
+import { UserApi } from '@/services'
+import { useUserStore } from '@/store/user'
 import SignInForm from '@/views/auth/forms/SignInForm.vue'
 import SignUpForm from '@/views/auth/forms/SignUpForm.vue'
 import TabsField, { type Tab } from '@/components/TabsField.vue'
 import type { UserSignInDTO, UserSignUpModel } from '@/@types'
 
-const tab = ref<string>('login')
+const $userStore = useUserStore()
 
 const login = ref<UserSignInDTO>({
   email: '',
@@ -19,24 +21,47 @@ const register = ref<UserSignUpModel>({
   confirmPassword: ''
 })
 
+const tab = ref<string>('login')
+
+const loading = ref({
+  signIn: false,
+  signUp: false
+})
+
 const tabs: Tab[] = [
   {
     id: 'login',
     label: 'Sign In',
-    title: 'Login',
+    title: 'Sign In',
     description: 'Enter your credentials to access the system.'
   },
   {
     id: 'register',
     label: 'Sign Up',
-    title: 'Register',
+    title: 'Sign In',
     description: 'Enter your credentials to register with the system'
   }
 ]
 
-const ToSignIn = async () => {}
+const ToSignIn = async () => {
+  loading.value.signIn = true
+  const { data, error } = await UserApi.postSignIn(login.value)
+  loading.value.signIn = false
 
-const ToSignUp = async () => {}
+  if (error) return
+
+  $userStore.SET_USER(data)
+}
+
+const ToSignUp = async () => {
+  loading.value.signUp = true
+  const { data, error } = await UserApi.postSignUp(register.value)
+  loading.value.signUp = false
+
+  if (error) return
+
+  $userStore.SET_USER(data)
+}
 </script>
 
 <template>
@@ -63,11 +88,19 @@ const ToSignUp = async () => {}
         <div>
           <TabsField v-model:model-value="tab" :tabs="tabs">
             <template #content-login>
-              <SignInForm @sign-in="ToSignIn" v-model:model-value="login" />
+              <SignInForm
+                @sign-in="ToSignIn"
+                :loading="loading.signIn"
+                v-model:model-value="login"
+              />
             </template>
 
             <template #content-register>
-              <SignUpForm @sign-up="ToSignUp" v-model:model-value="register" />
+              <SignUpForm
+                @sign-up="ToSignUp"
+                :loading="loading.signUp"
+                v-model:model-value="register"
+              />
             </template>
           </TabsField>
         </div>

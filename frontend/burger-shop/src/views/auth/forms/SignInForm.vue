@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { reactive, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import InputPassword from '@/components/InputPassword.vue'
 import type { UserSignInDTO } from '@/@types'
+
+defineProps<{
+  loading: boolean
+}>()
 
 const $emits = defineEmits<{
   (e: 'update:modelValue', value: UserSignInDTO): void
@@ -32,6 +36,12 @@ watch(login, (newValue) => {
     <div>
       <InputPassword v-model:model-value="login.password" />
     </div>
-    <Button @click="$emit('sign-in')" class="mt-2">Sign In</Button>
+    <Button
+      @click.prevent.stop="$emit('sign-in')"
+      class="mt-2"
+      :loading="loading"
+      :disabled="loading"
+      >Sign In</Button
+    >
   </form>
 </template>

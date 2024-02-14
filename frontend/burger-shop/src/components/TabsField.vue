@@ -48,7 +48,7 @@ watch(
     <TabsContent v-for="tab in tabs" :key="tab.id" :value="tab.id">
       <Card class="border-primary">
         <CardHeader>
-          <CardTitle>{{ tab.title }}</CardTitle>
+          <CardTitle class="text-bold text-2xl">{{ tab.title }}</CardTitle>
           <CardDescription>
             {{ tab.description }}
           </CardDescription>

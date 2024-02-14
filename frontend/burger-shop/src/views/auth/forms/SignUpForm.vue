@@ -6,6 +6,10 @@ import { Button } from '@/components/ui/button'
 import InputPassword from '@/components/InputPassword.vue'
 import type { UserSignUpModel } from '@/@types'
 
+defineProps<{
+  loading: boolean
+}>()
+
 const $emits = defineEmits<{
   (e: 'update:modelValue', value: UserSignUpModel): void
   (e: 'sign-up'): void
@@ -41,6 +45,12 @@ watch(register, (newValue) => {
     <div>
       <InputPassword label="Confirm Password" v-model:model-value="register.confirmPassword" />
     </div>
-    <Button @click="$emit('sign-up')" class="mt-2">Sign Up</Button>
+    <Button
+      @click.prevent.stop="$emit('sign-up')"
+      class="mt-2"
+      :loading="loading"
+      :disabled="loading"
+      >Sign Up</Button
+    >
   </form>
 </template>
