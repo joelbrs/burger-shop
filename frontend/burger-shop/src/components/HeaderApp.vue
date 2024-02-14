@@ -29,7 +29,7 @@ const setActive = (isCurrent: boolean) => {
               <RouterLink :to="{ name: 'home' }">Home</RouterLink>
             </li>
             <li :class="`text-md text-black font-serif ${setActive(isProduct)}`">
-              <RouterLink :to="{ name: 'home' }">Products</RouterLink>
+              <RouterLink :to="{ name: 'home-products' }">Products</RouterLink>
             </li>
           </ul>
         </div>

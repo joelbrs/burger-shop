@@ -1,19 +1,24 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export interface Tab {
   id: string
   label: string
-  title: string
+  title?: string
   description?: string
   disabled?: boolean
 }
 
-const props = defineProps<{
+interface Props {
   tabs: Tab[]
-}>()
+  setWidth?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  setWidth: '25vw'
+})
 
 const $emits = defineEmits<{
   (e: 'update:modelValue', value: string): void
@@ -29,11 +34,14 @@ watch(
     }
   }
 )
+
+const cols = computed(() => props.tabs.length)
+const width = computed(() => props.setWidth)
 </script>
 
 <template>
-  <Tabs v-model:model-value="tab" :default-value="tabs[0].id" class="w-[25vw]">
-    <TabsList :class="`grid w-full grid-cols-2`">
+  <Tabs v-model:model-value="tab" :default-value="tabs[0].id" :class="`w - [${width}]`">
+    <TabsList :class="`grid w-full grid-cols-${cols}`">
       <TabsTrigger
         v-for="tab in tabs"
         :key="tab.id"
