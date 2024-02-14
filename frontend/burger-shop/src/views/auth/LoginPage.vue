@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { UserApi } from '@/services'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import SignInForm from '@/views/auth/forms/SignInForm.vue'
 import SignUpForm from '@/views/auth/forms/SignUpForm.vue'
 import TabsField, { type Tab } from '@/components/TabsField.vue'
 import type { UserSignInDTO, UserSignUpModel } from '@/@types'
 
+const $router = useRouter()
 const $userStore = useUserStore()
 
 const login = ref<UserSignInDTO>({
@@ -51,6 +53,7 @@ const ToSignIn = async () => {
   if (error) return
 
   $userStore.SET_USER(data)
+  await $router.push({ name: 'home-products' })
 }
 
 const ToSignUp = async () => {
@@ -61,6 +64,7 @@ const ToSignUp = async () => {
   if (error) return
 
   $userStore.SET_USER(data)
+  tab.value = 'login'
 }
 </script>
 
