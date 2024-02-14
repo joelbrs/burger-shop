@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=burger-shop
+    ports:
+      - 5435:5432

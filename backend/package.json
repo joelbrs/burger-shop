@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Bem-vindo ao projeto Burger Shop! Este é um sistema para gerenciar pedidos em uma hamburgueria, oferecendo uma plataforma simples e eficiente para clientes e funcionários.",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch ./src/server.ts",
+    "studio": "npx prisma studio --schema ./src/infra/database/prisma/schema.prisma",
+    "migrate:dev": "npx prisma migrate dev --schema ./src/infra/database/prisma/schema.prisma"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/jwt": "^8.0.0",
+    "@prisma/client": "^5.9.1",
+    "dotenv": "^16.4.1",
+    "fastify": "^4.26.0",
+    "prisma": "^5.9.1",
+    "zod": "^3.22.4"
+  }
+}
