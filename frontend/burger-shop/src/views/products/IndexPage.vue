@@ -5,14 +5,18 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ProductApi } from '@/services'
-import { Search } from 'lucide-vue-next'
+import { Search, CheckCircle } from 'lucide-vue-next'
 import { onMounted, ref, watch } from 'vue'
 import type { ProductDTOOut } from '@/@types'
+import { useCartStore } from '@/store/cart'
+import ProductQuantity from '@/components/ProductQuantity.vue'
 
 interface Filters {
   name: string | null
   category: string | null
 }
+
+const $cartStore = useCartStore()
 
 const filters = ref({
   category: '',
@@ -46,6 +50,14 @@ watch(
   },
   { deep: true }
 )
+
+const addToCart = (item: ProductDTOOut) => {
+  $cartStore.ADD_PRODUCT(item)
+}
+
+const productInCart = (item: ProductDTOOut) => {
+  return $cartStore.FIND_PRODUCT(item.id)
+}
 
 onMounted(async () => {
   await getProducts()
@@ -97,8 +109,8 @@ onMounted(async () => {
     </div>
     <div class="grid grid-cols-3 gap-5 pb-20">
       <Card
-        class="max-w-[30vw] max-h-[25vh] border-violet-800"
         v-for="product in products"
+        :class="`max-w-[30vw] max-h-[25vh] ${!productInCart(product) ? 'border-violet-800' : 'border-green-400'}`"
         :key="product.id"
       >
         <CardContent>
@@ -114,17 +126,32 @@ onMounted(async () => {
               <div class="mt-5">
                 <div>
                   <h1 class="text-md font-mono mb-3">{{ product.name }}</h1>
-                  <p class="font-bold text-sm">
-                    {{
-                      Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-                        product.price
-                      )
-                    }}
-                  </p>
+                  <div class="flex items-center justify-between">
+                    <p class="font-bold text-sm">
+                      {{
+                        Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+                          product.price
+                        )
+                      }}
+                    </p>
+                    <div v-if="productInCart(product)">
+                      <ProductQuantity :product="product" />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div>
-                <Button class="w-full font-medium"> Adicionar </Button>
+                <Button
+                  v-if="!productInCart(product)"
+                  @click="addToCart(product)"
+                  class="w-full font-medium"
+                >
+                  Adicionar
+                </Button>
+                <Button v-else disabled color="bg-green-500" class="w-full font-medium">
+                  <CheckCircle class="mr-2 w-4 h-4" />
+                  Adicionado
+                </Button>
               </div>
             </div>
           </div>

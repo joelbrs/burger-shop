@@ -2,9 +2,9 @@
 import { useRoute } from 'vue-router'
 import { RouterLink } from 'vue-router'
 import { Separator } from '@/components/ui/separator'
-import { ShoppingCart } from 'lucide-vue-next'
 import BtnUserInfos from '@/components/BtnUserInfos.vue'
 import { onMounted, ref } from 'vue'
+import BtnCart from './BtnCart.vue'
 
 type RouteName = 'home' | 'products'
 
@@ -61,7 +61,7 @@ onMounted(() => {
         <div class="flex gap-5 h-7 items-center">
           <div class="text-violet-700">
             <RouterLink :to="{ name: 'home' }">
-              <ShoppingCart />
+              <BtnCart />
             </RouterLink>
           </div>
           <Separator orientation="vertical" />

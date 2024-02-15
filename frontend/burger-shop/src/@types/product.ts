@@ -5,3 +5,7 @@ export interface ProductDTOOut {
   category: string
   offer_id: string | null
 }
+
+export interface ProductCart extends ProductDTOOut {
+  quantity: number
+}

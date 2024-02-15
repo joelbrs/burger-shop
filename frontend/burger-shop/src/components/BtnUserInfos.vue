@@ -13,10 +13,12 @@ import { onMounted, ref } from 'vue'
 import type { UserDTOOut } from '@/@types'
 import { useRouter } from 'vue-router'
 import { useCookies } from 'vue3-cookies'
+import { useCartStore } from '@/store/cart'
 
 const $router = useRouter()
 const { cookies } = useCookies()
 const $userStore = useUserStore()
+const $cartStore = useCartStore()
 
 const user = ref<UserDTOOut>({
   email: '',
@@ -28,6 +30,7 @@ const user = ref<UserDTOOut>({
 const logOut = async () => {
   cookies.remove('access_token')
   $userStore.DELETE_USER()
+  $cartStore.DESTROY_CART()
   await $router.push({ name: 'login' })
 }
 
