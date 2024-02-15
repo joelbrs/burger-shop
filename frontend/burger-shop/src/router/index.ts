@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '@/store/user'
 import { useCookies } from 'vue3-cookies'
+
+const { cookies } = useCookies()
+const token: string | null = cookies.get('access_token')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,9 +34,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  const { cookies } = useCookies()
+  const $userStore = useUserStore()
+
+  if (token) {
+    $userStore.SET_USER_BY_TOKEN_JWT(token)
+  }
+
   if (to.name !== 'login') {
-    const token: string | null = cookies.get('access_token')
     if (!token) {
       return { name: 'login' }
     }

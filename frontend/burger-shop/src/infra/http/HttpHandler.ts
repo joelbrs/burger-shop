@@ -14,6 +14,15 @@ export default class HttpHandler {
     return this.baseUrl || ''
   }
 
+  async get<T>(url: string, params: Object) {
+    try {
+      const data = await this._httpClient.get<T>(this.constructUrl(url), params)
+      return setDataHandler<T>(data)
+    } catch (err) {
+      return setErrorHandler(err as Error)
+    }
+  }
+
   async post<T>(url: string, body: Object) {
     try {
       const data = await this._httpClient.post<T>(this.constructUrl(url), body)
