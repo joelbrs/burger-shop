@@ -61,13 +61,7 @@ export default class UserService {
         type: user.type,
       };
 
-      const access_token = request.jwt.sign({ login: payload });
-      reply.setCookie("access_token", access_token, {
-        httpOnly: true,
-        secure: true,
-      });
-
-      return { access_token };
+      return request.jwt.sign({ login: payload });
     } catch (err) {
       throw err;
     }

@@ -17,8 +17,10 @@ export const app: FastifyInstance = fastify();
 app.register(cookie, { hook: "preHandler" });
 app.register(fastifyJwt, { secret: randomBytes(32).toString("hex") });
 app.register(fastifyCors, {
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   origin: true,
-  methods: ["GET", "PUT", "POST", "DELETE"],
 });
 
 /** Global Hooks */
