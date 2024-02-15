@@ -36,16 +36,18 @@ defineProps<{
       >
         <div class="flex flex-col gap-2">
           <div class="p-1">
-            <Card class="hover:cursor-pointer hover:scale-95 h-[30vh] bg-primary border-violet-900">
+            <Card
+              class="hover:cursor-pointer hover:scale-95 h-[30vh] bg-primary-foreground border-violet-900"
+            >
               <CardContent class="flex aspect-square items-center justify-center p-6">
-                <span class="text-4xl font-semibold text-secondary">{{ index + 1 }}</span>
+                <span class="text-4xl font-semibold text-primary">{{ index + 1 }}</span>
               </CardContent>
             </Card>
           </div>
 
           <div v-if="type === 'offers'" class="w-[5vw] px-1.5">
-            <div class="text-sm text-nowrap text-black">{{ item.title }}</div>
-            <div class="text-sm font-bold text-black">{{ item.price }}</div>
+            <div class="text-sm text-nowrap text-white">{{ item.title }}</div>
+            <div class="text-sm font-bold text-white">{{ item.price }}</div>
           </div>
 
           <div class="flex items-center justify-center p-1">

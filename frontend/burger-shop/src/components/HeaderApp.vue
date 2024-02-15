@@ -20,7 +20,7 @@ const setActive = (isCurrent: boolean) => {
 </script>
 
 <template>
-  <header class="bg-secondary-foreground fixed w-full">
+  <header class="bg-primary-foreground w-full">
     <nav class="p-5">
       <div class="flex justify-between px-16 items-center">
         <div>
@@ -34,7 +34,7 @@ const setActive = (isCurrent: boolean) => {
           </ul>
         </div>
         <div class="flex gap-5 h-7 items-center">
-          <div class="text-black">
+          <div class="text-violet-700">
             <RouterLink :to="{ name: 'home' }">
               <ShoppingCart :class="setActive(isCart)" />
             </RouterLink>

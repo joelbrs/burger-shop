@@ -38,7 +38,7 @@ onMounted(() => {
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <CircleUser :class="`hover:text-violet-700 hover:cursor-pointer text-black `" />
+      <CircleUser :class="`text-violet-700 hover:cursor-pointer `" />
     </DropdownMenuTrigger>
     <DropdownMenuContent class="relative left-14 w-25">
       <DropdownMenuGroup>
@@ -65,6 +65,6 @@ onMounted(() => {
     </DropdownMenuContent>
   </DropdownMenu>
   <div>
-    <div class="text-sm font-sans">Hi, {{ user.name }}</div>
+    <div class="text-sm font-mono text-black">Hi, {{ user.name }}</div>
   </div>
 </template>
