@@ -44,7 +44,7 @@ watch(
       <div>
         <ShoppingCart :class="`text-violet-700 hover:cursor-pointer`" />
         <div
-          class="text-white relative bottom-8 left-5 bg-violet-600 text-center rounded-full h-3.5 w-3.5 text-[10px] font-medium"
+          class="text-white relative bottom-8 left-5 bg-violet-600 text-center rounded-full h-3.5 w-3.5 text-[10px] font-medium animate-bounce"
         >
           {{ getTotalQuantiy() }}
         </div>
