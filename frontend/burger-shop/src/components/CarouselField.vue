@@ -36,7 +36,7 @@ defineProps<{
       >
         <div class="flex flex-col gap-2">
           <div class="p-1">
-            <Card class="hover:cursor-pointer h-[35vh] bg-primary border-blue-900">
+            <Card class="hover:cursor-pointer hover:scale-95 h-[30vh] bg-primary border-violet-900">
               <CardContent class="flex aspect-square items-center justify-center p-6">
                 <span class="text-4xl font-semibold text-secondary">{{ index + 1 }}</span>
               </CardContent>
@@ -44,13 +44,13 @@ defineProps<{
           </div>
 
           <div v-if="type === 'offers'" class="w-[5vw] px-1.5">
-            <div class="text-sm text-nowrap">{{ item.title }}</div>
-            <div class="text-sm font-bold">{{ item.price }}</div>
+            <div class="text-sm text-nowrap text-black">{{ item.title }}</div>
+            <div class="text-sm font-bold text-black">{{ item.price }}</div>
           </div>
 
           <div class="flex items-center justify-center p-1">
             <Button
-              class="w-full text-primary font-sans rounded-md bg-violet-600 hover:bg-violet-500"
+              class="w-full text-primary font-sans text-md rounded-md bg-violet-600 hover:bg-violet-500"
             >
               {{ type === 'offers' ? 'Take it Now!' : item.title }}
             </Button>

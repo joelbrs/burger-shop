@@ -65,20 +65,20 @@ const categories = ref<PropCarouselItem[]>([
       <img class="w-lvw" src="../assets/bg-burger-home.svg" />
     </div>
     <div
-      class="flex flex-col items-center w-full h-[80vh] bg-primary-foreground gap-10 rounded-t-3xl relative bottom-6"
+      class="flex flex-col items-center w-full h-[75vh] bg-popover gap-10 rounded-t-3xl relative bottom-6"
     >
       <div class="mt-14">
-        <h1 class="font-medium text-4xl text-stone-100">CATEGORIES</h1>
+        <h1 class="font-medium text-4xl text-violet-200">CATEGORIES</h1>
       </div>
       <div>
         <CarouselField :items="categories" />
       </div>
     </div>
     <div
-      class="flex flex-col items-center bg-secondary-foreground w-full h-screen gap-10 relative bottom-6"
+      class="flex flex-col items-center bg-secondary-foreground w-full h-[75vh] gap-10 relative bottom-6"
     >
       <div class="mt-14">
-        <h1 class="font-medium text-4xl text-primary-foreground">OFFERS</h1>
+        <h1 class="font-medium text-4xl text-violet-950">OFFERS</h1>
       </div>
       <div>
         <CarouselField type="offers" :items="categories" />

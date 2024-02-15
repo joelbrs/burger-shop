@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent} from '@/components/ui/card'
 import SelectField from '@/components/SelectField.vue'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 </script>
 
 <template>
@@ -9,18 +11,24 @@ import { Button } from '@/components/ui/button'
     <div>
       <img class="w-lvw" src="../../assets/bg-burger-products.svg" />
     </div>
-    <div class="flex gap-5 items-center justify-center w-full">
+    <div class="flex gap-5 items-center self-start ml-[11vw]">
       <div class="mt-5">
-        <h3>Filter:</h3>
+        <h3>Filters:</h3>
       </div>
-      <div>
-        <SelectField
-          id="category"
-          label="Category"
-          item-value="id"
-          item-text="description"
-          :items="[]"
-        />
+      <div class="flex gap-2">
+        <div>
+          <Label>Name</Label>
+          <Input placeholder="Name" />
+        </div>
+        <div>
+          <SelectField
+            id="category"
+            label="Category"
+            item-value="id"
+            item-text="description"
+            :items="[]"
+          />
+        </div>
       </div>
     </div>
     <div class="grid grid-cols-3 gap-5">
@@ -39,9 +47,9 @@ import { Button } from '@/components/ui/button'
                 </div>
               </div>
               <div>
-                <Button class="w-full font-medium"
-                  >Adicionar</Button
-                >
+                <Button class="w-full font-medium">
+                  Adicionar
+                </Button>
               </div>
             </div>
           </div>
