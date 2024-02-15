@@ -1,5 +1,6 @@
 import type { CreateAxiosDefaults } from 'axios'
 import { useRouter } from 'vue-router'
+import { useCookies } from 'vue3-cookies'
 import axios from 'axios'
 
 const options: CreateAxiosDefaults = {
@@ -12,18 +13,26 @@ const options: CreateAxiosDefaults = {
 }
 
 const $router = useRouter()
+const { cookies } = useCookies()
 const $axios = axios.create(options)
 
 $axios.interceptors.request.use(
-  (config) => config,
+  (config) => {
+    const token: string | null = cookies.get('access_token')
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
+    return config
+  },
   (error) => Promise.reject(error)
 )
 
 $axios.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     if (error.response.status === 401) {
-      $router.push({ name: 'login' })
+      await $router.push({ name: 'login' })
     }
   }
 )

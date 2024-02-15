@@ -12,8 +12,10 @@ import { useUserStore } from '@/store/user'
 import { onMounted, ref } from 'vue'
 import type { UserDTOOut } from '@/@types'
 import { useRouter } from 'vue-router'
+import { useCookies } from 'vue3-cookies'
 
 const $router = useRouter()
+const { cookies } = useCookies()
 const $userStore = useUserStore()
 
 const user = ref<UserDTOOut>({
@@ -24,13 +26,14 @@ const user = ref<UserDTOOut>({
 })
 
 const logOut = async () => {
+  cookies.remove('access_token')
   $userStore.DELETE_USER()
   await $router.push({ name: 'login' })
 }
 
 onMounted(() => {
   if ($userStore.user) {
-    user.value = { ...$userStore.user, name: $userStore.user.name?.split(' ')[0] }
+    user.value = { ...$userStore.user, name: $userStore.user.name }
   }
 })
 </script>
@@ -65,6 +68,6 @@ onMounted(() => {
     </DropdownMenuContent>
   </DropdownMenu>
   <div>
-    <div class="text-sm font-mono text-black">Hi, {{ user.name }}</div>
+    <div class="text-sm font-mono text-black">Hi, {{ user.name?.split(' ')[0] }}</div>
   </div>
 </template>

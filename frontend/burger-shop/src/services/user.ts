@@ -9,5 +9,5 @@ export function postSignUp(body: UserSignUpDTO) {
 }
 
 export function postSignIn(body: UserSignInDTO) {
-  return httpClient.post<UserDTOOut>('auth', body)
+  return httpClient.post<string>('auth', body)
 }

@@ -6,9 +6,12 @@ import { useUserStore } from '@/store/user'
 import SignInForm from '@/views/auth/forms/SignInForm.vue'
 import SignUpForm from '@/views/auth/forms/SignUpForm.vue'
 import TabsField, { type Tab } from '@/components/TabsField.vue'
-import type { UserSignInDTO, UserSignUpModel } from '@/@types'
+import type { UserDTOOut, UserSignInDTO, UserSignUpModel } from '@/@types'
+import { jwtDecode } from 'jwt-decode'
+import { useCookies } from 'vue3-cookies'
 
 const $router = useRouter()
+const { cookies } = useCookies()
 const $userStore = useUserStore()
 
 const login = ref<UserSignInDTO>({
@@ -52,8 +55,11 @@ const ToSignIn = async () => {
 
   if (error) return
 
-  $userStore.SET_USER(data)
-  await $router.push({ name: 'home-products' })
+  const user: { login: UserDTOOut } = jwtDecode(data)
+  $userStore.SET_USER(user.login)
+
+  cookies.set('access_token', data)
+  await $router.push({ name: 'home' })
 }
 
 const ToSignUp = async () => {
