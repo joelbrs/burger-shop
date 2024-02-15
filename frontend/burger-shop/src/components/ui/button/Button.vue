@@ -11,10 +11,12 @@ interface Props extends PrimitiveProps {
   as?: string
   class?: HTMLAttributes['class']
   loading?: boolean
+  color: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  as: 'button'
+  as: 'button',
+  color: 'hover:bg-violet-500 bg-violet-700 text-white'
 })
 </script>
 
@@ -22,9 +24,9 @@ const props = withDefaults(defineProps<Props>(), {
   <Primitive
     :as="as"
     :as-child="asChild"
-    :class="cn(buttonVariants({ variant, size }), `${props.class} hover:bg-violet-500 bg-violet-700 text-white`)"
+    :class="cn(buttonVariants({ variant, size }), `${props.class} ${props.color}`)"
   >
-    <Loader2 v-if="loading" class="ml-4 w-4 h-4" />
+    <Loader2 v-if="loading" class="w-4 h-4 mr-2 animate-spin" />
     <slot />
   </Primitive>
 </template>
