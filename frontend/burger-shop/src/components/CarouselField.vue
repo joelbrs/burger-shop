@@ -46,8 +46,8 @@ defineProps<{
           </div>
 
           <div v-if="type === 'offers'" class="w-[5vw] px-1.5">
-            <div class="text-sm text-nowrap text-white">{{ item.title }}</div>
-            <div class="text-sm font-bold text-white">{{ item.price }}</div>
+            <div class="text-sm text-nowrap text-black">{{ item.title }}</div>
+            <div class="text-sm font-bold text-black">{{ item.price }}</div>
           </div>
 
           <div class="flex items-center justify-center p-1">

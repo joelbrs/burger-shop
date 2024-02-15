@@ -41,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="bg-primary-foreground w-full">
+  <header class="bg-secondary-foreground w-full">
     <nav class="p-5">
       <div class="flex justify-between px-16 items-center">
         <div>

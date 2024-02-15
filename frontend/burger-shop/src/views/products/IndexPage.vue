@@ -148,7 +148,7 @@ onMounted(async () => {
                 >
                   Adicionar
                 </Button>
-                <Button v-else disabled color="bg-green-500" class="w-full font-medium">
+                <Button v-else disabled color="bg-green-500" class="w-full font-medium text-white">
                   <CheckCircle class="mr-2 w-4 h-4" />
                   Adicionado
                 </Button>

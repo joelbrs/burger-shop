@@ -8,14 +8,20 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
-import { ShoppingCart, UtensilsCrossed, Check } from 'lucide-vue-next'
+import { ShoppingCart, UtensilsCrossed, Check, Eraser } from 'lucide-vue-next'
 import type { ProductCart } from '@/@types'
 import { ref, watch } from 'vue'
 import { useCartStore } from '@/store/cart'
+import { useRouter } from 'vue-router'
 
+const $router = useRouter()
 const $cartStore = useCartStore()
 
 const products = ref<ProductCart[]>([])
+
+const clearCart = () => {
+  $cartStore.DESTROY_CART()
+}
 
 const getTotalQuantiy = () => {
   return products.value.reduce((acc, item) => acc + item.quantity, 0)
@@ -71,12 +77,23 @@ watch(
             <p class="text-sm font-mono">{{ $cartStore.cart.total }}</p>
           </div>
           <DropdownMenuSeparator />
-          <DropdownMenuItem class="hover:cursor-pointer">
-            <div class="flex items-center">
-              <Check class="mr-2 h-4 w-4 text-green-500" />
-              <span>Finalize Order</span>
-            </div>
-          </DropdownMenuItem>
+          <div class="flex items-center justify-between px-2">
+            <DropdownMenuItem @click="clearCart" class="hover:cursor-pointer">
+              <div class="flex items-center">
+                <Eraser class="mr-2 h-4 w-4 text-red-500" />
+                <span>Clear Cart</span>
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              @click.prevent.stop="$router.push({ name: 'home' })"
+              class="hover:cursor-pointer"
+            >
+              <div class="flex items-center">
+                <Check class="mr-2 h-4 w-4 text-green-500" />
+                <span>Finalize Order</span>
+              </div>
+            </DropdownMenuItem>
+          </div>
         </div>
         <div class="flex items-center justify-center" v-else>
           <h2 class="text-sm font-mono">Empty Cart.</h2>
