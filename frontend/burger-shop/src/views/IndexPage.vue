@@ -6,59 +6,60 @@ const categories = ref<PropCarouselItem[]>([
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   },
   {
     id: '12312312',
     title: 'Burgers',
-    img: '',
+    img: 'src/assets/bg-burger-login.svg',
     price: 'R$ 35,90'
   }
 ])
 </script>
+
 <template>
   <div class="flex flex-col items-center justify-center bg-secondary-foreground">
     <div>

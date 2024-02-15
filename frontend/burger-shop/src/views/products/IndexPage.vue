@@ -128,11 +128,7 @@ onMounted(async () => {
                   <h1 class="text-md font-mono mb-3">{{ product.name }}</h1>
                   <div class="flex items-center justify-between">
                     <p class="font-bold text-sm">
-                      {{
-                        Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-                          product.price
-                        )
-                      }}
+                      {{ $cartStore.FORMAT_PRICE(product.price) }}
                     </p>
                     <div v-if="productInCart(product)">
                       <ProductQuantity :product="product" />

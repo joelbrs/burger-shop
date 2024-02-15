@@ -36,11 +36,9 @@ defineProps<{
       >
         <div class="flex flex-col gap-2">
           <div class="p-1">
-            <Card
-              class="hover:cursor-pointer hover:scale-95 h-[30vh] bg-primary-foreground border-violet-900"
-            >
+            <Card class="hover:cursor-pointer hover:scale-95 h-[30vh] bg-transparent border-none">
               <CardContent class="flex aspect-square items-center justify-center p-6">
-                <span class="text-4xl font-semibold text-primary">{{ index + 1 }}</span>
+                <img class="rounded-lg" :src="item.img" />
               </CardContent>
             </Card>
           </div>

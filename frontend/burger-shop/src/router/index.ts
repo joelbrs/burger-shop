@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useCookies } from 'vue3-cookies'
 import { useCartStore } from '@/store/cart'
-import type { ProductCart } from '@/@types'
 
 const { cookies } = useCookies()
 
@@ -22,6 +21,11 @@ const router = createRouter({
           path: 'products',
           name: 'products',
           component: () => import('../views/products/IndexPage.vue')
+        },
+        {
+          path: 'checkout',
+          name: 'checkout',
+          component: () => import('../views/products/CheckoutPage.vue')
         }
       ],
       component: () => import('../layouts/MainLayout.vue')

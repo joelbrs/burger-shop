@@ -44,18 +44,18 @@ onMounted(() => {
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <CircleUser :class="`text-violet-700 hover:cursor-pointer `" />
+      <CircleUser :class="`text-violet-600 hover:cursor-pointer `" />
     </DropdownMenuTrigger>
     <DropdownMenuContent class="relative left-14 w-25">
       <DropdownMenuGroup>
         <DropdownMenuItem class="hover:cursor-pointer">
-          <div class="flex items-center w-full hover:text-violet-500">
+          <div class="flex items-center w-full hover:text-violet-600">
             <User class="mr-2 h-4 w-4" />
             <span>{{ user.name || 'Name' }}</span>
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem class="hover:cursor-pointer">
-          <div class="flex items-center w-full hover:text-violet-500">
+          <div class="flex items-center w-full hover:text-violet-600">
             <Mail class="mr-2 h-4 w-4" />
             <span>{{ user.email || 'E-mail' }}</span>
           </div>
@@ -71,6 +71,6 @@ onMounted(() => {
     </DropdownMenuContent>
   </DropdownMenu>
   <div>
-    <div class="text-sm font-mono text-black">Hi, {{ user.name?.split(' ')[0] }}</div>
+    <div class="text-sm font-mono">Hi, {{ user.name?.split(' ')[0] }}</div>
   </div>
 </template>

@@ -8,4 +8,5 @@ export interface ProductDTOOut {
 
 export interface ProductCart extends ProductDTOOut {
   quantity: number
+  total: number
 }

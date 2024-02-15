@@ -42,9 +42,9 @@ watch(
   <DropdownMenu>
     <DropdownMenuTrigger class="mt-4" as-child>
       <div>
-        <ShoppingCart :class="`text-violet-700 hover:cursor-pointer`" />
+        <ShoppingCart :class="`text-violet-600 hover:cursor-pointer`" />
         <div
-          class="text-white relative bottom-8 left-5 bg-violet-600 text-center rounded-full h-3.5 w-3.5 text-[10px] font-medium animate-bounce"
+          class="text-white relative bottom-8 left-5 bg-violet-800 text-center rounded-full h-3.5 w-3.5 text-[10px] font-medium animate-bounce"
         >
           {{ getTotalQuantiy() }}
         </div>
@@ -57,24 +57,20 @@ watch(
           :key="product.id"
           class="hover:cursor-pointer"
         >
-          <div class="flex items-center w-full px-2 py-1 hover:text-violet-500">
+          <div class="flex items-center w-full px-2 py-1 hover:text-violet-600">
             <UtensilsCrossed class="mr-2 h-4 w-4" />
             <Separator class="h-5 mr-2" orientation="vertical" />
             <div class="flex gap-5">
               <span>{{ product.quantity }}</span>
               <span>{{ product.name }}</span>
-              <span>{{
-                Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-                  product.price
-                )
-              }}</span>
+              <span>{{ $cartStore.FORMAT_PRICE(product.price) }}</span>
             </div>
           </div>
         </DropdownMenuItem>
         <div v-if="products.length !== 0">
           <div class="flex items-center justify-end gap-5 px-1 mb-2 mr-3">
             <!-- <span class="text-sm">Total:</span> -->
-            <p class="text-sm font-mono">{{ $cartStore.cart.total }}</p>
+            <p class="text-sm font-mono">{{ $cartStore.FORMAT_PRICE($cartStore.cart.total) }}</p>
           </div>
           <DropdownMenuSeparator />
           <div class="flex items-center justify-between px-2">
@@ -85,7 +81,7 @@ watch(
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem
-              @click.prevent.stop="$router.push({ name: 'home' })"
+              @click.prevent.stop="$router.push({ name: 'checkout' })"
               class="hover:cursor-pointer"
             >
               <div class="flex items-center">

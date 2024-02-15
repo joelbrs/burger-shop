@@ -26,9 +26,9 @@ const activate = ({ name }: { name: RouteName }) => {
 
 const setActive = (isCurrent: boolean) => {
   if (isCurrent) {
-    return 'text-violet-700'
+    return 'text-violet-500'
   }
-  return 'hover:cursor-pointer hover:hover:text-violet-700'
+  return 'hover:cursor-pointer hover:hover:text-violet-500'
 }
 
 onMounted(() => {
@@ -41,17 +41,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="bg-secondary-foreground w-full">
+  <header class="w-full bg-primary-foreground">
     <nav class="p-5">
       <div class="flex justify-between px-16 items-center">
         <div>
           <ul class="flex gap-5">
-            <li :class="`text-md text-black font-serif ${setActive(active.home)}`">
+            <li :class="`text-md font-serif ${setActive(active.home)}`">
               <RouterLink @click="activate({ name: 'home' })" :to="{ name: 'home' }">
                 Home
               </RouterLink>
             </li>
-            <li :class="`text-md text-black font-serif ${setActive(active.products)}`">
+            <li :class="`text-md font-serif ${setActive(active.products)}`">
               <RouterLink @click="activate({ name: 'products' })" :to="{ name: 'products' }">
                 Products
               </RouterLink>
@@ -59,7 +59,7 @@ onMounted(() => {
           </ul>
         </div>
         <div class="flex gap-5 h-7 items-center">
-          <div class="text-violet-700">
+          <div>
             <RouterLink :to="{ name: 'home' }">
               <BtnCart />
             </RouterLink>
