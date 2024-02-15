@@ -20,7 +20,7 @@ const setActive = (isCurrent: boolean) => {
 </script>
 
 <template>
-  <header class="bg-secondary-foreground">
+  <header class="bg-secondary-foreground fixed w-full">
     <nav class="p-5">
       <div class="flex justify-between px-16 items-center">
         <div>

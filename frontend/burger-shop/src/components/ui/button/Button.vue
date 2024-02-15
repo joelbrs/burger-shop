@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   <Primitive
     :as="as"
     :as-child="asChild"
-    :class="cn(buttonVariants({ variant, size }), props.class)"
+    :class="cn(buttonVariants({ variant, size }), `${props.class} hover:bg-violet-500 bg-violet-700 text-white`)"
   >
     <Loader2 v-if="loading" class="ml-4 w-4 h-4" />
     <slot />

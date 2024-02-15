@@ -40,21 +40,21 @@ const width = computed(() => props.setWidth)
 </script>
 
 <template>
-  <Tabs v-model:model-value="tab" :default-value="tabs[0].id" :class="`w - [${width}]`">
-    <TabsList :class="`grid w-full grid-cols-${cols}`">
+  <Tabs v-model:model-value="tab" :default-value="tabs[0].id" :class="`w-[${width}]`">
+    <TabsList :class="`grid w-full grid-cols-2`">
       <TabsTrigger
         v-for="tab in tabs"
         :key="tab.id"
         :disabled="tab.disabled"
         :value="tab.id"
-        class="data-[state=active]:border data-[state=active]:border-primary data-[state=active]:text-primary"
+        class="data-[state=active]:border data-[state=active]:border-violet-700 data-[state=active]:text-primary"
       >
         <slot :name="`label-${tab.id}`" />
         {{ tab.label }}
       </TabsTrigger>
     </TabsList>
     <TabsContent v-for="tab in tabs" :key="tab.id" :value="tab.id">
-      <Card class="border-primary">
+      <Card class="border-violet-950">
         <CardHeader>
           <CardTitle class="text-bold text-2xl">{{ tab.title }}</CardTitle>
           <CardDescription>
